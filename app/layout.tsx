@@ -1,6 +1,6 @@
 import './globals.css'
 
-import {Title} from './components'
+import {Title} from '../components'
 
 export const metadata = {
   title: 'Harry potter',

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { useFetch } from '../api'
+import { useFetch } from '../app/api'
 
 const SearchBar = () => {
   const { data, isLoading, err} = useFetch();
