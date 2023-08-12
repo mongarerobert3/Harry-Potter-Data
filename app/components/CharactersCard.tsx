@@ -2,28 +2,38 @@
 
 import React from 'react'
 import { useRouter } from 'next/navigation';
-import { useFetch } from '../api'
+import { useFetch } from '@app/api';
+import { Character } from '@common.types';
 
 const CharactersCard = () => {
 	const navigation = useRouter();
 
-	const { data, isLoading, error} = useFetch();
+	const { data, isLoading, error } = useFetch();
 
 	if(isLoading){
-		return (
+		return(
 			<div>
-				Loading
+			Loading ...
+		</div>
+		)	
+	}
+
+	if(error){
+		return(
+			<div>
+				Error: {error}
 			</div>
 		)
 	}
 
+
 	return (
-		<div>
-			{data.map((item, index) => (
+		<div className='grid grid-cols-4 gap-2'>
+			{data.map((item: Character, index) => (
 			<div className='wrapper' key={index}>
 				<div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 					<img 
-						className="rounded-t-lg" 
+						className="rounded-t-lg w-full h-80 object-cover" 
 						src={item.image} alt="" 
 					/>
 					<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>

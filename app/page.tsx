@@ -1,4 +1,4 @@
-import {SearchBar, CharactersCard} from "./components"
+import {CharactersCard, SearchBar, } from "./components"
 
 const Home = () => {
   return (
