@@ -1,10 +1,34 @@
 'use client'
 
-import React from 'react';
+import React,{ useState} from 'react';
 import { useFetch } from '../app/api'
+import Cards from './Cards';
+import { Character } from '@common.types';
 
 const SearchBar = () => {
-  const { data, isLoading, err} = useFetch();
+  const [searchInput, setSearchInput] = useState('');
+  const { data, isLoading, error} = useFetch();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const filteredData = data.filter((item: Character) => 
+    item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+    item.house.toLowerCase().includes(searchInput.toLowerCase())
+  )
+
+  console.log('searchInput:', searchInput);
+  console.log('filteredData:', filteredData);
+
   return (
     <section className='wrapper'>
       <form className='pl-10 my-2 mx-6 ml-9'>
@@ -23,6 +47,7 @@ const SearchBar = () => {
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search Name, House..."
             required
+            onChange={handleInputChange}
           />
           <button
             type="submit"
@@ -32,6 +57,14 @@ const SearchBar = () => {
           </button>
         </div>
       </form>
+      {searchInput && (
+        <div className="mt-6 grid grid-cols-4 gap-2 search-results-container">
+        {filteredData.map((item: Character, index) => (
+          <Cards key={index} item={item}/>
+        ))}
+      </div>
+      )}
+      
     </section>		
     
   );
