@@ -1,70 +1,50 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-
+import React from 'react';
 import { usePathname } from 'next/navigation';
-import axios from 'axios';
+import useFetch from '@app/api/useFetch';
 
 const CharacterPage = () => {
-  const [characterData, setCharacterData] = useState(null);
-
   const pathname = usePathname();
   const id = pathname.split('/').pop();
-  console.log(id)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (id) {
-          console.log("In here", id)
-          const response = await axios.get(`https://hp-api.onrender.com/api/character/${id}`);
-          const data = response.data;
-          setCharacterData(data);
-          console.log("Character Data:", data);
-        }
-      } catch (error) {
-        console.log('Error fetching character data:', error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  if (!characterData) {
-    return <div>Loading...</div>;
+  const { data, isLoading, error } = useFetch(id);
+  
+  if (isLoading) {
+    return <div className="text-center py-8">Loading...</div>;
   }
 
+  if (error) {
+    return <div className="text-center py-8">Error: {error}</div>;
+  }
+
+  console.log('this is the data', data);
+
+  const character = data[0];
+
   return (
-    <Card sx={{ maxWidth: 768 }}>
-      <CardActionArea className='flex'>
-        <CardMedia
-          component="img"
-          height="140"
-          image={characterData.image}
-          alt=""
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {characterData.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      {character ? (
+        <div className="flex max-w-3xl p-8 bg-white rounded shadow">
+          <div className="flex-shrink-0">
+            <img
+              src={character.image}
+              alt={character.name}
+              className="w-48 h-auto rounded-lg"
+            />
+          </div>
+          <div className="ml-8">
+            <h1 className="text-2xl font-bold mb-2">{character.name}</h1>
+            <p className="text-gray-600">Species: {character.species}</p>
+            <p className="text-gray-600">Gender: {character.gender}</p>
+            <p className="text-gray-600">House: {character.house}</p>
+          </div>
+        </div>
+      ) : (
+        <div>No data available.</div>
+      )}
+    </div>
   );
 };
 
 export default CharacterPage;
+
