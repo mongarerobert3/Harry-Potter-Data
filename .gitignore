@@ -37,7 +37,9 @@ next-env.d.ts
 
 #To remove
 README.md
-globals.css
+/test-results/
+/playwright-report/
+/playwright/.cache/
 /test-results/
 /playwright-report/
 /playwright/.cache/
