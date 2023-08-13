@@ -34,7 +34,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "tests/characterPage.spec.js"  ],
   "exclude": [
     "node_modules"
   ]

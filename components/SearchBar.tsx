@@ -10,7 +10,7 @@ const SearchBar = () => {
   const { data, isLoading, error} = useFetch();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   if (error) {

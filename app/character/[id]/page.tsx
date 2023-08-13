@@ -10,7 +10,9 @@ const CharacterPage = () => {
   const { data, isLoading, error } = useFetch(id);
   
   if (isLoading) {
-    return <div className="text-center py-8">Loading...</div>;
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="animate-spin rounded-full border-t-2 border-blue-500 border-solid h-16 w-16"></div>
+    </div>
   }
 
   if (error) {
@@ -33,14 +35,14 @@ const CharacterPage = () => {
             />
           </div>
           <div className="ml-8">
-            <h1 className="text-2xl font-bold mb-2">{character.name}</h1>
+            <h1 className="char-name text-2xl font-bold mb-2">{character.name}</h1>
             <p className="text-gray-600">Species: {character.species}</p>
             <p className="text-gray-600">Gender: {character.gender}</p>
             <p className="text-gray-600">House: {character.house}</p>
           </div>
         </div>
       ) : (
-        <div>No data available.</div>
+        <div></div>
       )}
     </div>
   );
