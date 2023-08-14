@@ -3,6 +3,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+/**
+ * useFetch - fetches data from the Harry Potter API //https://hp-api.onrender.com/
+ * @param {string} id 
+ * @returns { object } An object containing the fetched data
+ */
 const useFetch = (id = '') => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);

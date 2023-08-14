@@ -78,6 +78,6 @@ test.describe.parallel('ID Tests', () => {
     responses.forEach(response => {
         expect(response.status).toBe(200);
     });
-});
+	});
 })
 

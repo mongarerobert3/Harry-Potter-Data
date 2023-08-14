@@ -1,3 +1,7 @@
+/**
+ * imports and exports the components from the Components folder
+ */
+
 import CharactersCard from './CharactersCard';
 import SearchBar from './SearchBar';
 import Title from './Title';

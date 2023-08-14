@@ -1,8 +1,10 @@
 const { test, expect } = require('@playwright/test');
 
+const baseUrl = 'https://hp-api.onrender.com/api/character'
+
 test('Character Page Test', async ({ page }) => {
-  await page.goto('http://localhost:3000/character/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8');
-  await page.waitForSelector('.char-name')
+  await page.goto('http://localhost:3001/character/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8');
+  await page.waitForSelector('.char-name');
 
   const characterName = await page.textContent('.char-name');
   const species = await page.textContent('char-species:has-text("Species:")');
@@ -17,12 +19,12 @@ test('Character Page Test', async ({ page }) => {
   expect(image).toContain('https://ik.imagekit.io/hpapi/harry.jpg');
 });
 
-test('Character page to display loader spinner while waiting data', async({ page }) => {
-  await page.goto('http://localhost:3000/character/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8');
+test('Character page to display loader spinner while waiting data', async ({ page }) => {
+  await page.goto('http://localhost:3001/character/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8');
   await page.waitForSelector('animate-spin');
 });
 
-/***By codeGen ***/
+/** By codeGen 
 test('test', async ({ page }) => {
   await page.goto('http://localhost:3001/');
   await page.getByRole('heading', { name: 'Harry Porter Characters' }).click();
@@ -35,7 +37,6 @@ test('test', async ({ page }) => {
   await page.getByPlaceholder('Search Name, House...').click();
   await page.locator('section').filter({ hasText: /^SearchSearchName: Harry PotterD\.O\.B: 31-07-1980Read more$/ }).locator('img').click();
   await page.locator('section').filter({ hasText: /^SearchSearchName: Harry PotterD\.O\.B: 31-07-1980Read more$/ }).getByRole('heading').click();
-  await page.locator('section').filter({ hasText: /^SearchSearchName: Harry PotterD\.O\.B: 31-07-1980Read more$/ }).getByRole('paragraph').click();
   await page.locator('section').filter({ hasText: /^SearchSearchName: Harry PotterD\.O\.B: 31-07-1980Read more$/ }).getByRole('paragraph').click();
   await page.getByText('Name: Harry PotterD.O.B: 31-07-1980Read more').first().click();
   await page.locator('section').filter({ hasText: /^SearchSearchName: Harry PotterD\.O\.B: 31-07-1980Read more$/ }).getByRole('button').nth(1).click();
@@ -57,4 +58,4 @@ test('test', async ({ page }) => {
   await page.getByText('Ancestry: half-blood').click();
   await page.getByText('Eye Colour: green').click();
   await page.getByText('Hair Colour: black').click();
-});
+});**/

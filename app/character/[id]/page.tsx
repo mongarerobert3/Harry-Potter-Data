@@ -3,7 +3,13 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import useFetch from '@app/api/useFetch';
-import { Loading } from '@components';
+//import { Loading } from '@components';
+
+/**
+ * Displays individual character
+ * Gets character from url where id is a parameter
+ * @returns - the fetched data of a character from the Harry Potter API
+ */
 
 const CharacterPage = () => {
   const pathname = usePathname();
@@ -17,8 +23,6 @@ const CharacterPage = () => {
   if (error) {
     return <div className="text-center py-8">Error: {error}</div>;
   }
-
-  console.log('this is the data', data);
 
   const character = data[0];
 
@@ -60,4 +64,3 @@ const CharacterPage = () => {
 };
 
 export default CharacterPage;
-
