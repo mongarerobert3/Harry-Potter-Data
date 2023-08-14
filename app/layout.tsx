@@ -1,6 +1,6 @@
 import './globals.css'
 
-import {Title} from '../components'
+import {NotFoundPage, Title} from '../components'
 
 export const metadata = {
   title: 'Harry potter',
@@ -15,8 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='app'>
-        <Title />
         <main>
+          <Title />
           {children}
         </main> 
       </body>
