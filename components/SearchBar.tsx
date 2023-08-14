@@ -7,11 +7,8 @@ import { Character } from '@common.types';
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState('');
-  const { data, isLoading, error} = useFetch();
+  const { data, error} = useFetch();
 
-  if (isLoading) {
-    return <div></div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;

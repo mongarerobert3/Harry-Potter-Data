@@ -3,17 +3,16 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import useFetch from '@app/api/useFetch';
+import { Loading } from '@components';
 
 const CharacterPage = () => {
   const pathname = usePathname();
   const id = pathname.split('/').pop();
-  const { data, isLoading, error } = useFetch(id);
+  const { data, error } = useFetch(id);
   
-  if (isLoading) {
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="animate-spin rounded-full border-t-2 border-blue-500 border-solid h-16 w-16"></div>
-    </div>
-  }
+  /**if (isLoading) {
+    return <Loading />;
+  }**/
 
   if (error) {
     return <div className="text-center py-8">Error: {error}</div>;
