@@ -1,5 +1,6 @@
 const axios = require('axios');
 const {test, expect} = require('@playwright/test')
+const fetch = require('node-fetch');
 
 const baseUrl = 'https://hp-api.onrender.com/api/character'
 const characterId = '9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8';
@@ -29,8 +30,8 @@ test.describe.parallel('Response testing', () => {
 	
 })
 
-test.describe.parallel('ID Details Tests', () => {
-	test('Get User Detail', async ({ request }) => {
+test.describe.parallel('ID Tests', () => {
+	test('Get User Detail,fetch Data with a valid id', async ({ request }) => {
 		const response = await request.get(`${baseUrl}/${characterId}`);
 		const responseBody = JSON.parse(await response.text());
 
@@ -40,25 +41,43 @@ test.describe.parallel('ID Details Tests', () => {
 		expect(responseBody[0].eyeColour).toBe('green');
 		expect(responseBody[0].dateOfBirth).toBe('31-07-1980');
 	});	
+
+	test('Fetching all the data', async ({ request }) => {
+		const response = await request.get(`${baseUrl}/${characterId}`);
+		const responseBody = JSON.parse(await response.text());
+
+		expect(response.status()).toBe(200); 
+	});
+
+	test('Querying with a wrong ID', async ({ page }) => {
+    const wrongCharacterId = '9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a9';
+
+    page.on('requestfailed', (request) => {
+        if (request.url().includes(`/character/${wrongCharacterId}`)) {
+            expect(request.failure().errorText).toContain('Cannot GET /api/characters/');
+        }
+    });
+
+    await page.goto(`${baseUrl}/character/${wrongCharacterId}`);
+	});
+
+	test('Concurrent API Requests', async () => {
+    const numConcurrentRequests = 10; 
+    const endpoint = `${baseUrl}/character`;
+
+    // Create an array of promises for concurrent requests
+    const requestPromises = Array.from({ length: numConcurrentRequests }, async () => {
+			const response = await fetch(endpoint);
+			return response;
+    });
+
+    // Execute concurrent requests using Promise.all()
+    const responses = await Promise.all(requestPromises);
+
+    // Check if all responses have status 200
+    responses.forEach(response => {
+        expect(response.status).toBe(200);
+    });
+});
 })
 
-test.describe.parallel('ID testing Itself', () => {
-	test('Fetching data without id', async ({ page }) => {
-		page.on('request', (request) => {
-			if (request.url().includes('/characters')) {
-				request.respond({
-					status: 200,
-					contentType: 'application/json',
-					body: JSON.stringify(response)
-				});
-			}
-		});
-	
-		await page.goto(`${baseUrl}`);
-	
-		const data = await page.evaluate(() => window.__TEST_DATA__);
-		expect(data).toEqual(response.data)
-	})
-	
-	
-})
