@@ -1,9 +1,14 @@
 'use client'
 
+/***
+ * search By name or house
+ * @returns - the Character in the same container 
+ */
+
 import React,{ useState} from 'react';
 import { useFetch } from '../app/api'
-import Cards from './Cards';
 import { Character } from '@common.types';
+import Card from './Card';
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -22,9 +27,6 @@ const SearchBar = () => {
     item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
     item.house.toLowerCase().includes(searchInput.toLowerCase())
   )
-
-  console.log('searchInput:', searchInput);
-  console.log('filteredData:', filteredData);
 
   return (
     <section className='wrapper'>
@@ -55,9 +57,9 @@ const SearchBar = () => {
         </div>
       </form>
       {searchInput && (
-        <div className="mt-6 grid grid-cols-4 gap-2 search-results-container">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredData.map((item: Character, index) => (
-          <Cards key={index} item={item}/>
+          <Card key={index} item={item}/>
         ))}
       </div>
       )}

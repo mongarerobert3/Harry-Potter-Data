@@ -28,16 +28,8 @@
   @apply mx-8 my-4 w-4/5;
 }
 
-.search-results-container {
-  @apply flex flex-wrap justify-between min-w-[300px];
-  gap: 1rem;
-}
 
 @media (max-width: 768px) {
-  .search-results-container {
-    @apply justify-center;
-  }
-
   .grid-cols-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

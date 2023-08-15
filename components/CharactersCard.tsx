@@ -6,12 +6,12 @@ import { Character } from '@common.types';
 import { useFetch } from '@app/api';
 
 const CharactersCard = () => {
+
   return (
-    <div>
+    <div >
       <Cards />
     </div>
   );
 };
 
 export default CharactersCard;
-
