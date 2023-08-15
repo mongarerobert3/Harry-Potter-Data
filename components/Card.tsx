@@ -1,6 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Component that renders the cards
+ */
+
 interface Character {
   id: string;
   image: string;

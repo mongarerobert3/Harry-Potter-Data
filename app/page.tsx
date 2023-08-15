@@ -1,10 +1,15 @@
-import {CharactersCard, SearchBar, } from "../components"
+import {Cards, SearchBar, } from "../components"
+
+/**
+ * Homepage
+ * @returns homepage components
+ */
 
 const Home = () => {
   return (
     <section className="flex-start flex-col paddings mb-16">
       <SearchBar />
-      <CharactersCard />
+      <Cards />
     </section>
   )
 }

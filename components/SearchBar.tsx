@@ -2,7 +2,7 @@
 
 /***
  * search By name or house
- * @returns - the Character in the same container 
+ * @return - the Character in the same container 
  */
 
 import React,{ useState} from 'react';
@@ -57,7 +57,7 @@ const SearchBar = () => {
         </div>
       </form>
       {searchInput && (
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredData.map((item: Character, index) => (
           <Card key={index} item={item}/>
         ))}
