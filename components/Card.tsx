@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 /**
- * Component that renders the cards
+ * Component that renders the individual cards
  */
 
 interface Character {

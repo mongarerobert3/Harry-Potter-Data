@@ -2,7 +2,7 @@
 
 /***
  * search By name or house
- * @return - the Character in the same container 
+ * @return - the Character as per the search input 
  */
 
 import React,{ useState} from 'react';
@@ -11,6 +11,11 @@ import { Character } from '@common.types';
 import Card from './Card';
 
 const SearchBar = () => {
+  /**
+   * @searchInput - State to hold the list of characters.
+   * @type - string
+   * @data - holds the object data
+   */
   const [searchInput, setSearchInput] = useState('');
   const { data, error} = useFetch();
 
@@ -23,6 +28,11 @@ const SearchBar = () => {
     setSearchInput(event.target.value);
   };
 
+  /**
+   * Function to determine if a character matches the search input.
+   * @param {Character} item - The character to check.
+   * @returns {boolean} - True if the character matches the search input, false otherwise.
+   */
   const filteredData = data.filter((item: Character) => 
     item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
     item.house.toLowerCase().includes(searchInput.toLowerCase())

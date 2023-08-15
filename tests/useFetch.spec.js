@@ -2,6 +2,10 @@ const axios = require('axios');
 const {test, expect} = require('@playwright/test')
 const fetch = require('node-fetch');
 
+/**
+ * Tests the api and its typeof(data)
+ */
+
 const baseUrl = 'https://hp-api.onrender.com/api/character'
 const characterId = '9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8';
 

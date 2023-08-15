@@ -4,6 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { useFetch } from '@app/api';
 import {Card} from './../components'
 
+/**
+ * Displays the static cards
+ * @returns - starting cards with loading placeholders
+ */
+
 interface Character {
   id: string;
   image: string;
@@ -12,6 +17,12 @@ interface Character {
 }
 
 const Cards: React.FC = () => {
+  /**
+   * State to hold the list of characters.
+   * @type {Array<Character>}
+   * 
+   * @data - holds the data from the useFetch
+   */
   const [data, setData] = useState<Character[]>([]);
   const { data: fetchedData, error } = useFetch();
 
