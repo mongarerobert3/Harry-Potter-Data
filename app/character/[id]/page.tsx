@@ -53,7 +53,7 @@ const CharacterPage = () => {
               <span className="char-label-background">Species</span> {character.species}
             </p>
             <p className="char-details char-gender text-gray-600">
-              <span className="char-label-background">Gender:</span> {character.gender}
+              <span className="char-label-background">Gender</span> {character.gender}
             </p>
             <p className="char-details char-house text-gray-600">
               <span className="char-label-background">House</span> {character.house}
