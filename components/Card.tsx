@@ -21,7 +21,7 @@ const Card: React.FC<{ item: Character }> = ({ item }) => {
 
   return (
     <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto my-4">
-      <div className="h-80 flex items-center justify-center">
+      <div className="h-56 md:h-72 flex items-center justify-center">
         <img
           className="rounded-t-lg w-full h-56 md:h-80 object-cover"
           src={item.image}
