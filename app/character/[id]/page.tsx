@@ -2,7 +2,6 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import useFetch from '@app/api/useFetch';
-//import { Loading } from '@components';
 
 /**
  * Displays individual character
