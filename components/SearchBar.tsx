@@ -40,7 +40,7 @@ const SearchBar = () => {
 
   return (
     <section className='wrapper'>
-      <form className='pl-10 my-2 mx-6 ml-9'>
+      <form className='w-full pl-6 md:pl-10 my-2 mx-3 md:mx-6 lg:mx-9'>
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
         </label>
@@ -53,7 +53,8 @@ const SearchBar = () => {
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             placeholder="Search Name, House..."
             required
             onChange={handleInputChange}

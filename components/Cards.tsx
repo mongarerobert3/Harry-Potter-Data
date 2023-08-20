@@ -45,7 +45,7 @@ const Cards: React.FC = () => {
   ));
 
   return (
-    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+    <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:grid-cols-2'>
       {data.length > 0
         ? data.map((item, index) => <Card key={index} item={item} />)
         : staticCards}
