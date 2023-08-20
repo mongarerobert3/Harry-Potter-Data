@@ -25,9 +25,8 @@
 }
 
 .wrapper {
-  @apply mx-20 lg:mr-40 text-sm my-4 items-center;
+  @apply lg:mx-20 lg:mr-40 text-sm my-4 items-center;
 }
-
 
 .char-details {
   display: grid;
